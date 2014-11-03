@@ -1,9 +1,11 @@
 GO-practices
 ============
 
--goroutine star scheme
-	Spawn N goroutines from a hub, you must be able to send messages to any goroutine
-	Goroutines will exit if received kill command
+#### goroutine star scheme
+ Write a function which starts N processes in a star, and sends a message to each of them, if kill command has been sent the processes should terminate gracefully.
 
--goroutine ring exercise
-	Create a ring from spawnned N goroutines, pass message on ring  M times 
+#### goroutine ring exercise
+ Write a function which starts N processes in a ring, and sends a message M times around all the processes in the ring. After the messages have been sent the processes should terminate gracefully.
+
+#### auto expired goroutines
+ Spawn a goroutine adding timer expirancy, when a key is pressed, goroutine will reset its expiration time.
