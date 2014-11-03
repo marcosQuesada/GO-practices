@@ -3,14 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"time"
 )
-
-type timer struct {
-	timer *time.Timer
-	die   chan bool
-	ping  chan string
-}
 
 func main() {
 	expires := flag.Int("expires", 1, "expirancy")
@@ -34,22 +27,4 @@ func main() {
 			return
 		}
 	}
-}
-
-func (t *timer) loop(expirancy int) {
-	for {
-		select {
-		case <-t.ping:
-			fmt.Printf("Update timer\n")
-			t.timer = getTimer(expirancy)
-		case <-t.timer.C:
-			fmt.Printf("Expired timer \n")
-			t.die <- true
-			return
-		}
-	}
-}
-
-func getTimer(expirancy int) *time.Timer {
-	return time.NewTimer(time.Second * time.Duration(expirancy))
 }
